@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # MySQL 설정 (기존에 있던 것과 병합)
+  db:
+    image: mysql:8.0
+    container_name: remind-me-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: remind_me
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+  # Redis 설정 추가
+  redis:
+    image: redis:latest
+    container_name: remind-me-redis
+    restart: always
+    command: redis-server --port 6379 --appendonly yes # 데이터 보존을 위해 AOF 활성화
+    ports:
+      - "6379:6379"
+    # 클러스터를 염두에 둔다면 추후에 설정을 확장하기 좋음
+
+  # Redis GUI 툴 (선택사항: 웹에서 Redis 확인 가능)
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: remind-me-redis-insight
+    ports:
+      - "8001:5540"
+    depends_on:
+      - redis
+
+networks:
+  default:
+    name: remind-me-network
