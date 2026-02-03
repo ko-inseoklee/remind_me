@@ -1,0 +1,22 @@
+# IDE and System files
+.idea/
+*.iml
+.DS_Store
+*.log
+
+# Docker-related
+mysql
+mysql/data
+
+# Flutter (remind_me_app)
+remind_me_app/build/
+remind_me_app/.dart_tool/
+remind_me_app/.metadata
+remind_me_app/.flutter-plugins
+remind_me_app/.flutter-plugins-dependencies
+
+# Spring Boot / Gradle (remind_me_server)
+remind_me_server/build/
+remind_me_server/.gradle/
+remind_me_server/bin/
+remind_me_server/out/
