@@ -1,23 +1,25 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: remind-me-server
 
-  # Database 설정 (Docker MySQL 기준)
   datasource:
-    url: jdbc:mysql://localhost:3306/remindme?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?user=postgres.gblnlgamxmrwfervtgjc&password=isleedb2602
+    driver-class-name: org.postgresql.Driver
 
   # JPA 설정
   jpa:
     hibernate:
-      ddl-auto: update # 개발 초기 단계이므로 update 사용
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
+        # dialect: org.hibernate.dialect.PostgreSQLDialect
+        transaction:
+          jta:
+            platform: org.hibernate.service.jta.JtaPlatform
 
   # Redis 설정
   data:
