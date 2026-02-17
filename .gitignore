@@ -8,6 +8,8 @@
 mysql
 mysql/data
 
+.vscode/
+
 # Flutter (remind_me_app)
 remind_me_app/build/
 remind_me_app/.dart_tool/
