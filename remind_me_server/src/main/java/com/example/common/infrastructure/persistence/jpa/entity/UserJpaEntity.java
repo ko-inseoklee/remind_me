@@ -1,10 +1,9 @@
 package com.example.common.infrastructure.persistence.jpa.entity;
 
-import org.checkerframework.checker.units.qual.C;
 
 import com.example.common.domain.model.User;
-import com.example.common.infrastructure.persistence.jpa.entity.base.BaseEntityWithId;
 
+import com.example.common.infrastructure.persistence.jpa.entity.base.BaseEntityWithId;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

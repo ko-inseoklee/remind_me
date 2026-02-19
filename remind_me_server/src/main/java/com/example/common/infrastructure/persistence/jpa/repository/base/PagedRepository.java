@@ -1,5 +1,6 @@
-package com.example.common.repository;
+package com.example.common.infrastructure.persistence.jpa.repository.base;
 
+import com.example.common.infrastructure.persistence.jpa.repository.base.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.NoRepositoryBean;
