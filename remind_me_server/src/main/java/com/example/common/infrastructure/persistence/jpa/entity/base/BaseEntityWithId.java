@@ -1,12 +1,11 @@
-package com.example.common.entity;
+package com.example.common.infrastructure.persistence.jpa.entity.base;
 
+import com.example.common.infrastructure.persistence.jpa.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Objects;
 
 /**
  * ID를 가진 엔티티의 기본 클래스

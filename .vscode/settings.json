@@ -1,3 +1,5 @@
 {
-    "cmake.sourceDirectory": "/Users/inseoklee/development/remindme/remind_me_app/linux"
+    "cmake.sourceDirectory": "/Users/inseoklee/development/remindme/remind_me_app/linux",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
