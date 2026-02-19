@@ -1,4 +1,4 @@
-package com.example.common.dto;
+package com.example.common.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
