@@ -1,4 +1,4 @@
-package com.example.common.exception;
+package com.example.common.web.exception;
 
 /**
  * 비즈니스 로직 처리 중 발생하는 일반적인 예외

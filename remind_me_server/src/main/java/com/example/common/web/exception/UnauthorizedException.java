@@ -1,4 +1,4 @@
-package com.example.common.exception;
+package com.example.common.web.exception;
 
 /**
  * 인증 관련 예외

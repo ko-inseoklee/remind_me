@@ -1,6 +1,5 @@
 package com.example.common.infrastructure.persistence.jpa.entity.base;
 
-import com.example.common.infrastructure.persistence.jpa.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

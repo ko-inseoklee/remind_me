@@ -1,6 +1,6 @@
-package com.example.common.util;
+package com.example.common.infrastructure.util;
 
-import com.example.common.exception.InvalidInputException;
+import com.example.common.web.exception.InvalidInputException;
 
 /**
  * 검증 관련 유틸리티

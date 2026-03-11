@@ -1,4 +1,4 @@
-package com.example.common.constant;
+package com.example.common.web.constant;
 
 /**
  * HTTP 상태 코드 상수

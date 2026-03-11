@@ -1,4 +1,4 @@
-package com.example.common.exception;
+package com.example.common.web.exception;
 
 /**
  * 모든 비즈니스 예외의 기본 클래스

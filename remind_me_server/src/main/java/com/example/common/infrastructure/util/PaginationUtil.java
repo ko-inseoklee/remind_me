@@ -1,4 +1,4 @@
-package com.example.common.util;
+package com.example.common.infrastructure.util;
 
 /**
  * 페이지네이션 관련 유틸리티

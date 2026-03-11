@@ -1,4 +1,4 @@
-package com.example.common.constant;
+package com.example.common.web.constant;
 
 /**
  * 애플리케이션 전체에서 사용되는 상수

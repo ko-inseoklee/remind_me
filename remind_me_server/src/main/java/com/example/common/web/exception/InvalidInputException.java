@@ -1,4 +1,4 @@
-package com.example.common.exception;
+package com.example.common.web.exception;
 
 /**
  * 유효하지 않은 입력값에 대한 예외
