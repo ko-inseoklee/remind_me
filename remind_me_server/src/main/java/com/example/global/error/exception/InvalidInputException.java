@@ -1,4 +1,6 @@
-package com.example.common.web.exception;
+package com.example.global.error.exception;
+
+import com.example.global.error.ErrorCode;
 
 /**
  * 유효하지 않은 입력값에 대한 예외
@@ -6,10 +8,10 @@ package com.example.common.web.exception;
 public class InvalidInputException extends BaseException {
     
     public InvalidInputException(String fieldName, String reason) {
-        super(400, String.format("Invalid input for field '%s': %s", fieldName, reason));
+        super(ErrorCode.INVALID_INPUT, String.format("Invalid input for field '%s': %s", fieldName, reason));
     }
     
     public InvalidInputException(String message) {
-        super(400, message);
+        super(ErrorCode.INVALID_INPUT, message);
     }
 }

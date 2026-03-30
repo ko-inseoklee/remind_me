@@ -1,4 +1,6 @@
-package com.example.common.web.exception;
+package com.example.global.error.exception;
+
+import com.example.global.error.ErrorCode;
 
 /**
  * 인증 관련 예외
@@ -6,6 +8,6 @@ package com.example.common.web.exception;
 public class UnauthorizedException extends BaseException {
     
     public UnauthorizedException(String message) {
-        super(401, message);
+        super(ErrorCode.UNAUTHORIZED, message);
     }
 }

@@ -1,4 +1,6 @@
-package com.example.common.web.exception;
+package com.example.global.error.exception;
+
+import com.example.global.error.ErrorCode;
 
 /**
  * 권한 관련 예외
@@ -6,6 +8,6 @@ package com.example.common.web.exception;
 public class ForbiddenException extends BaseException {
     
     public ForbiddenException(String message) {
-        super(403, message);
+        super(ErrorCode.FORBIDDEN, message);
     }
 }

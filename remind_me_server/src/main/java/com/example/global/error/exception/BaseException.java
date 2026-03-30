@@ -1,4 +1,6 @@
-package com.example.common.web.exception;
+package com.example.global.error.exception;
+
+import com.example.global.error.ErrorCode;
 
 /**
  * 모든 비즈니스 예외의 기본 클래스
@@ -6,23 +8,23 @@ package com.example.common.web.exception;
  */
 public abstract class BaseException extends RuntimeException {
     
-    private final int errorCode;
+    private final ErrorCode errorCode;
     private final String errorMessage;
     
-    public BaseException(int errorCode, String errorMessage) {
+    public BaseException(ErrorCode errorCode, String errorMessage) {
         super(errorMessage);
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
-    public BaseException(int errorCode, String errorMessage, Throwable cause) {
+    public BaseException(ErrorCode errorCode, String errorMessage, Throwable cause) {
         super(errorMessage, cause);
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
     public int getErrorCode() {
-        return errorCode;
+        return errorCode.getStatus();
     }
     
     public String getErrorMessage() {
