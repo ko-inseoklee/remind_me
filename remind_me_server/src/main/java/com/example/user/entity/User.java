@@ -1,7 +1,8 @@
-package com.example.common.domain.model;
+package com.example.user.entity;
 
 import lombok.*;
-import java.time.LocalDateTime;
+
+import com.example.global.jpa.entity.base.BaseEntityWithId;
 
 /**
  * 순수 도메인 엔티티 (Persistence Ignorance)
@@ -9,15 +10,12 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class User {
+public class User extends BaseEntityWithId{
     private final Long id;
     private final String email;
     private String password;
     private String nickname;
     private Role role;
-    
-    private final LocalDateTime createdAt;
-    private final LocalDateTime updatedAt;
 
     public enum Role {
         USER, ADMIN

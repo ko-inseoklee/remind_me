@@ -1,4 +1,4 @@
-package com.example.global.error;
+package com.example.global.error.exception;
 
 public class CustomJwtException extends RuntimeException {
     public CustomJwtException(String message) {
