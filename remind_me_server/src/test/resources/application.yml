@@ -36,6 +36,6 @@ springdoc:
     path: /api-docs
 
   # 최소 32자 이상의 랜덤 문자열을 사용하세요
-  jwt:
-    secret: vms70639fd880bc60568d0301191edc0c115267483c56f7657c7674245e8f926
-    expiration: 86400000 # 24시간
+jwt:
+  secret: vms70639fd880bc60568d0301191edc0c115267483c56f7657c7674245e8f926
+  expiration: 86400000 # 24시간
