@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: remind-me-server
+  profiles:
+    active: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/remind_me_db?useSSL=false&serverTimezone=UTC&user=root
+    driver-class-name: org.postgresql.Driver
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: mysql.dialect.MySQL8Dialect
+        transaction:
+          jta:
+            platform: org.hibernate.service.jta.JtaPlatform
+
+  # Redis 설정
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# Swagger (SpringDoc) 설정
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    groups-order: asc
+  api-docs:
+    path: /api-docs
+
+
+jwt:
+  secret: vnX1xLBxwbIiEP7gwFbnoZP3W4oE8tifVrm4dEKctE4=
+  expiration: 3600000 # 1시간 (밀리초 단위)
