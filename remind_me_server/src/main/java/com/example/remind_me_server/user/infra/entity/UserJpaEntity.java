@@ -1,4 +1,4 @@
-package com.example.remind_me_server.user.entity;
+package com.example.remind_me_server.user.infra.entity;
 
 import com.example.remind_me_server.global.jpa.entity.BaseEntityWithId;
 
@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class User extends BaseEntityWithId{
+public class UserJpaEntity extends BaseEntityWithId {
     private final Long id;
     private final String email;
     private String password;
