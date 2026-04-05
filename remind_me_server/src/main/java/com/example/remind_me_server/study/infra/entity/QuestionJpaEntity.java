@@ -1,22 +1,24 @@
-package com.example.remind_me_server.category.infrastructure.entity;
-
+package com.example.remind_me_server.study.infra.entity;
 
 import com.example.remind_me_server.global.jpa.entity.BaseEntityWithId;
 import com.example.remind_me_server.user.infra.entity.UserJpaEntity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Getter;
 
-@Entity(name = "category")
+
+@Entity
 @Getter
 @Builder
-public class CategoryJpaEntity extends BaseEntityWithId {
-    private String name;
+public class QuestionJpaEntity extends BaseEntityWithId {
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    private String content;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UserJpaEntity user;
 }

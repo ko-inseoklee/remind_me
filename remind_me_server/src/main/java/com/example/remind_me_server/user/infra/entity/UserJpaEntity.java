@@ -1,7 +1,13 @@
 package com.example.remind_me_server.user.infra.entity;
 
-import com.example.remind_me_server.global.jpa.entity.BaseEntityWithId;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.remind_me_server.global.jpa.Password;
+import com.example.remind_me_server.global.jpa.entity.BaseEntityWithId;
+import com.example.remind_me_server.user.domain.UserRole;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Embedded;
 import lombok.*;
 
 /**
@@ -9,20 +15,28 @@ import lombok.*;
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 @Builder
 public class UserJpaEntity extends BaseEntityWithId {
     private final Long id;
+    
     private final String email;
-    private String password;
-    private String nickname;
-    private Role role;
 
-    public enum Role {
-        USER, ADMIN
-    }
+
+    @Embedded
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Password password;
+
+    private String nickname;
+    private UserRole role;
+
 
     public void changeNickname(String newNickname) {
         if (newNickname == null || newNickname.isBlank()) throw new IllegalArgumentException();
         this.nickname = newNickname;
+    }
+
+    public boolean authenticate(String rawPassword, PasswordEncoder encoder) {
+        return this.password.isMatch(rawPassword, encoder);
     }
 }
