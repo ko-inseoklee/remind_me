@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.remind_me_server.category.domain.Category;
 import com.example.remind_me_server.category.infrastructure.entity.CategoryJpaEntity;
-import com.example.remind_me_server.global.jpa.Mapper;
+import com.example.remind_me_server.global.jpa.CustomMapper;
 import com.example.remind_me_server.user.infra.entity.UserJpaEntity;
 
 import jakarta.persistence.EntityManager;
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class CategoryMapper implements Mapper<Category, CategoryJpaEntity> {
+public class CategoryMapper implements CustomMapper<Category, CategoryJpaEntity> {
 
     private final EntityManager em;
 

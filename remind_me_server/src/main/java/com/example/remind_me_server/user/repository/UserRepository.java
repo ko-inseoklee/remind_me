@@ -2,7 +2,8 @@ package com.example.remind_me_server.user.repository;
 
 import java.util.Optional;
 
-import com.example.remind_me_server.user.entity.User;
+import com.example.remind_me_server.user.domain.User;
+
 
 
 public interface UserRepository {
