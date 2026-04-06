@@ -1,6 +1,8 @@
 package com.example.remind_me_server.study.infra.persistence.adapter;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Repository;
 
@@ -38,62 +40,67 @@ public class AnswerAdapter implements AnswerRepository {
 
     @Override
     public void delete(Answer domain) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        AnswerJpaEntity e = mapper.toEntity(domain);
+        jpaRepository.delete(e);
     }
 
     @Override
     public void deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        jpaRepository.deleteById(id);
     }
 
     @Override
     public boolean existsById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+        return jpaRepository.existsById(id);
     }
 
     @Override
     public long count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
+        return jpaRepository.count();
     }
 
     @Override
     public Iterable<Answer> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        List<AnswerJpaEntity> entities = jpaRepository.findAll();
+
+        return mapper.toDomainList(entities);
     }
 
     @Override
     public Iterable<Answer> findAllById(Iterable<Long> ids) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllById'");
+        List<AnswerJpaEntity> entities = jpaRepository.findAllById(ids);
+
+        return mapper.toDomainList(entities);
     }
 
     @Override
     public void deleteAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+        jpaRepository.deleteAll();
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Answer> entities) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+    public void deleteAll(Iterable<? extends Answer> domains) {
+    List<Long> ids = StreamSupport.stream(domains.spliterator(), false)
+        .map(answer -> answer.id()) // Answer로 자동 추론됨
+        .toList();
+
+        deleteAllById(ids);
     }
 
     @Override
     public void deleteAllById(Iterable<? extends Long> ids) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAllById'");
+        jpaRepository.deleteAllById(ids);
     }
 
     @Override
-    public <S extends Answer> Iterable<S> saveAll(Iterable<S> entities) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveAll'");
+    public <S extends Answer> Iterable<S> saveAll(Iterable<S> domains) {
+        List<AnswerJpaEntity> entities = StreamSupport.stream(domains.spliterator(), false)
+            .map(answer -> mapper.toEntity(answer)) // Answer로 자동 추론됨
+            .toList();
+
+        entities = jpaRepository.saveAll(entities);
+        
+        return (Iterable<S>) mapper.toDomainList(entities);
     }
     
 }

@@ -1,5 +1,7 @@
 package com.example.remind_me_server.study.infra.persistence.mapper;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.example.remind_me_server.global.jpa.CustomMapper;
@@ -34,5 +36,9 @@ public class AnswerMapper implements CustomMapper<Answer, AnswerJpaEntity> {
             .question(em.getReference(QuestionJpaEntity.class, domain.questionId()))
             .build();
     
+    }
+
+    public Iterable<Answer> toDomainList(List<AnswerJpaEntity> entities) {
+        return entities.stream().map(this::toDomain).toList();
     }
 }
