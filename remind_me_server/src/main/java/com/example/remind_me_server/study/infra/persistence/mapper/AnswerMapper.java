@@ -1,11 +1,11 @@
-package com.example.remind_me_server.study.infra.mapper;
+package com.example.remind_me_server.study.infra.persistence.mapper;
 
 import org.springframework.stereotype.Component;
 
 import com.example.remind_me_server.global.jpa.CustomMapper;
 import com.example.remind_me_server.study.domain.Answer;
-import com.example.remind_me_server.study.infra.entity.AnswerJpaEntity;
-import com.example.remind_me_server.study.infra.entity.QuestionJpaEntity;
+import com.example.remind_me_server.study.infra.persistence.entity.AnswerJpaEntity;
+import com.example.remind_me_server.study.infra.persistence.entity.QuestionJpaEntity;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
