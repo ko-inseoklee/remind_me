@@ -16,7 +16,7 @@ import java.util.List;
  * @param <ID> 식별자 타입
  */
 @NoRepositoryBean
-public interface SearchableRepository<T, ID> extends PagedRepository<T, ID> {
+public interface SearchableRepository<T, ID> extends PagedJpaRepository<T, ID> {
     
     /**
      * 키워드로 검색 (구체적인 구현은 하위 Repository에서 정의)
