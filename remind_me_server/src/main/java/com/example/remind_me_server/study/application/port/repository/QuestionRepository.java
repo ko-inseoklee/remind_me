@@ -1,4 +1,4 @@
-package com.example.remind_me_server.study.repository;
+package com.example.remind_me_server.study.application.port.repository;
 
 
 import com.example.remind_me_server.global.repository.BaseRepository;

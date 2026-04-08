@@ -11,7 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @param <ID> 식별자 타입
  */
 @NoRepositoryBean
-public interface PagedRepository<T, ID> extends BaseRepository<T, ID> {
+public interface PagedJpaRepository<T, ID> extends BaseJpaRepository<T, ID> {
     
     /**
      * 페이지 단위로 모든 엔티티 조회
