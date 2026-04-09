@@ -38,6 +38,7 @@ public class AnswerMapper implements CustomMapper<Answer, AnswerJpaEntity> {
     
     }
 
+    @Override
     public Iterable<Answer> toDomainList(List<AnswerJpaEntity> entities) {
         return entities.stream().map(this::toDomain).toList();
     }

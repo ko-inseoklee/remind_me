@@ -6,7 +6,7 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.remind_me_server.study.application.port.repository.QuestionRepository;
+import com.example.remind_me_server.study.application.port.out.QuestionRepository;
 import com.example.remind_me_server.study.domain.Question;
 import com.example.remind_me_server.study.infra.persistence.entity.QuestionJpaEntity;
 import com.example.remind_me_server.study.infra.persistence.mapper.QuestionMapper;

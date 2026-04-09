@@ -1,4 +1,4 @@
-package com.example.remind_me_server.category.infrastructure.entity;
+package com.example.remind_me_server.category.infra.persistence.entity;
 
 
 import com.example.remind_me_server.global.jpa.entity.BaseEntityWithId;

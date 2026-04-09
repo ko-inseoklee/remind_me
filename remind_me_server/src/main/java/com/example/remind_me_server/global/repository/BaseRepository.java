@@ -24,9 +24,9 @@ public interface BaseRepository<T> {
 
     void deleteAll();
 
-    void deleteAll(Iterable<? extends T> entities);
+    void deleteAll(Iterable<? extends T> domains);
 
     void deleteAllById(Iterable<? extends Long> ids);
 
-    <S extends T> Iterable<S> saveAll(Iterable<S> entities);
+    <S extends T> Iterable<S> saveAll(Iterable<S> domains);
 }

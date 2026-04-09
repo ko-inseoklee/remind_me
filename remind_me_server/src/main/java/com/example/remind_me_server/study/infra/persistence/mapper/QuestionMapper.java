@@ -40,7 +40,8 @@ public class QuestionMapper implements CustomMapper<Question, QuestionJpaEntity>
             .build();
     }
 
-        public Iterable<Question> toDomainList(List<QuestionJpaEntity> entities) {
+    @Override
+    public Iterable<Question> toDomainList(List<QuestionJpaEntity> entities) {
         return entities.stream().map(this::toDomain).toList();
     }
 }

@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.remind_me_server.study.application.port.in.CreateQuestionCommand;
 import com.example.remind_me_server.study.application.port.in.CreateQuestionUseCase;
-import com.example.remind_me_server.study.application.port.repository.AnswerRepository;
-import com.example.remind_me_server.study.application.port.repository.QuestionRepository;
+import com.example.remind_me_server.study.application.port.out.AnswerRepository;
+import com.example.remind_me_server.study.application.port.out.QuestionRepository;
+import com.example.remind_me_server.study.domain.Question;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +20,7 @@ public class CreateQuestionService implements CreateQuestionUseCase {
 
     @Override
     public void create(CreateQuestionCommand command) {
-        
+        Question question = new Question(null, null, null)
     }
     
 }
