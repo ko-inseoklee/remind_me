@@ -6,12 +6,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public record CreateQuestionCommand(
+    @NotBlank Long userId,
     @NotBlank String content,
     @NotBlank String categoryName,
     @NotEmpty List<String> answerContents
 ) {
     // [초격차 전략] 컴팩트 생성자를 통한 유효성 검증
     public CreateQuestionCommand {
+
         if (content.length() > 500) {
             throw new IllegalArgumentException("질문 내용은 500자를 초과할 수 없습니다.");
         }

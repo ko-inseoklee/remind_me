@@ -12,6 +12,7 @@ import com.example.remind_me_server.category.infra.persistence.entity.CategoryJp
 import com.example.remind_me_server.category.infra.persistence.mapper.CategoryMapper;
 import com.example.remind_me_server.category.infra.persistence.repository.CategoryJpaRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -102,6 +103,15 @@ public class CategoryAdapter implements CategoryRepository {
         entities = jpaRepository.saveAll(entities);
 
         return (Iterable<S>) mapper.toDomainList(entities);
+    }
+
+    @Override
+    public Category findByName(String categoryName, Long userId) {
+        Optional<CategoryJpaEntity> e =  jpaRepository.findByNameAndUserId(categoryName, userId);
+
+        if(e.isPresent()) return mapper.toDomain(e.get());
+
+        throw new EntityNotFoundException();
     }
     
     
