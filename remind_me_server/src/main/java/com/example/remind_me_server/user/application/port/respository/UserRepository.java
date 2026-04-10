@@ -1,4 +1,4 @@
-package com.example.remind_me_server.user.repository;
+package com.example.remind_me_server.user.application.port.respository;
 
 import java.util.Optional;
 

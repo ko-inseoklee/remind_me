@@ -11,7 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @param <ID> 식별자 타입
  */
 @NoRepositoryBean
-public interface BaseRepository<T, ID> extends JpaRepository<T, ID> {
+public interface BaseJpaRepository<T, ID> extends JpaRepository<T, ID> {
     
     /**
      * 엔티티가 존재하는지 확인

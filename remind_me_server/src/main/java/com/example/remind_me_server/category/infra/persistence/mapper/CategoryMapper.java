@@ -1,9 +1,11 @@
-package com.example.remind_me_server.category.infrastructure.mapper;
+package com.example.remind_me_server.category.infra.persistence.mapper;
+
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.example.remind_me_server.category.domain.Category;
-import com.example.remind_me_server.category.infrastructure.entity.CategoryJpaEntity;
+import com.example.remind_me_server.category.infra.persistence.entity.CategoryJpaEntity;
 import com.example.remind_me_server.global.jpa.CustomMapper;
 import com.example.remind_me_server.user.infra.entity.UserJpaEntity;
 
@@ -38,5 +40,10 @@ public class CategoryMapper implements CustomMapper<Category, CategoryJpaEntity>
             .name(domain.name())
             .user(em.getReference(UserJpaEntity.class, domain.userId()))
             .build();
+    }
+
+    @Override
+    public Iterable<Category> toDomainList(List<CategoryJpaEntity> entities) {
+        return entities.stream().map(this::toDomain).toList();
     }
 }
