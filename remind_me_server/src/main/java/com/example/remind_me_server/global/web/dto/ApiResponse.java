@@ -28,17 +28,31 @@ public class ApiResponse<T> {
      * 성공 응답
      */
     public static <T> ApiResponse<T> success(T data, String message) {
+        return success(data, message, 200);
+    }
+    
+    public static <T> ApiResponse<T> success(T data) {
+        return success(data, "Success");
+    }
+
+    public static <T> ApiResponse<T> success(T data, String message, int status) {
         return ApiResponse.<T>builder()
             .success(true)
-            .statusCode(200)
+            .statusCode(status)
             .message(message)
             .data(data)
             .timestamp(LocalDateTime.now())
             .build();
     }
-    
-    public static <T> ApiResponse<T> success(T data) {
-        return success(data, "Success");
+
+    public static <T> ApiResponse<T> success(String message, int status) {
+        return ApiResponse.<T>builder()
+            .success(true)
+            .statusCode(status)
+            .message(message)
+            .data(null)
+            .timestamp(LocalDateTime.now())
+            .build();
     }
     
     public static ApiResponse<Void> success(String message) {

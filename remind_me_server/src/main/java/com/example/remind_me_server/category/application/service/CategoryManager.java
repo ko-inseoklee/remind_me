@@ -1,6 +1,5 @@
 package com.example.remind_me_server.category.application.service;
 
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
