@@ -13,6 +13,7 @@ import com.example.remind_me_server.study.infra.api.dto.CreateQuestionRequest;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,6 +26,7 @@ public class QuestionController {
     private final CreateQuestionService createQuestionService;
 
     @PostMapping("")
+    @PreAuthorize("hasRole('USER', 'ADMIN')")
     public ApiResponse<Long> createQuestion(
         @LoginUser long userId,
         @RequestBody CreateQuestionRequest request
@@ -34,6 +36,6 @@ public class QuestionController {
 
         Question q =  createQuestionService.create(command);
         return ApiResponse.success(q.id(), "생성 성공", HttpStatus.CREATED.value());
-    }
+    } 
     
 }

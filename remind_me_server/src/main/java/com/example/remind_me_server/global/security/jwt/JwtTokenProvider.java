@@ -15,7 +15,6 @@ import com.example.remind_me_server.auth.application.dto.UserJwtClaimDTO;
 import com.example.remind_me_server.global.error.exception.CustomJwtException;
 
 import java.util.Optional;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +27,8 @@ public class JwtTokenProvider {
     private final SecretKey key;
     private final JwtParser jwtParser;
     private final long validityInMilliseconds;
+
+    private final String ROLE_CLAIM = "role";
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey,
                             @Value("${jwt.expiration}") long validityInMilliseconds) {
@@ -51,6 +52,7 @@ public class JwtTokenProvider {
             builder()
                 .claim("email", user.getEmail())
                 .claim("nickname", user.getNickname())
+                .claim(ROLE_CLAIM, user.getUserRole())
                 .subject(user.getId().toString())
                 .issuedAt(now)
                 .expiration(validity)
@@ -100,9 +102,10 @@ public class JwtTokenProvider {
             .map(Long::valueOf)
             .orElseThrow(() -> new JwtException("Subject is missing in token"));
 
-    // 2. 권한 정보 설정 (현재는 빈 값, 필요 시 claims에서 추출)
-    List<SimpleGrantedAuthority> authorities = Collections.emptyList();
-
+    String role = claims.get(ROLE_CLAIM, String.class);
+    List<SimpleGrantedAuthority> authorities = List.of(role).stream()
+            .map(SimpleGrantedAuthority::new)
+            .toList();
     // 3. UsernamePasswordAuthenticationToken 생성
     // principal: userId(Long), credentials: null(이미 인증됨), authorities: 권한 리스트
     return new UsernamePasswordAuthenticationToken(userId, null, authorities);
