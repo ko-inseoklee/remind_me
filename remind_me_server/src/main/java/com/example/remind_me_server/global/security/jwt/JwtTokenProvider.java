@@ -6,6 +6,9 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.example.remind_me_server.auth.application.dto.UserJwtClaimDTO;
@@ -13,6 +16,7 @@ import com.example.remind_me_server.global.error.exception.CustomJwtException;
 
 import java.util.Optional;
 import java.util.Date;
+import java.util.List;
 
 import javax.crypto.SecretKey;
 
@@ -23,6 +27,8 @@ public class JwtTokenProvider {
     private final SecretKey key;
     private final JwtParser jwtParser;
     private final long validityInMilliseconds;
+
+    private final String ROLE_CLAIM = "role";
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey,
                             @Value("${jwt.expiration}") long validityInMilliseconds) {
@@ -46,6 +52,7 @@ public class JwtTokenProvider {
             builder()
                 .claim("email", user.getEmail())
                 .claim("nickname", user.getNickname())
+                .claim(ROLE_CLAIM, user.getUserRole())
                 .subject(user.getId().toString())
                 .issuedAt(now)
                 .expiration(validity)
@@ -84,5 +91,24 @@ public class JwtTokenProvider {
             log.error("유효하지 않은 토큰: {}", e.getMessage());
             throw new SecurityException("INVALID_TOKEN");
         }
-    }   
+    }
+
+    public Authentication getAuthentication(String token) {
+    // 1. 이미 구현된 getUserId를 활용해 userId 추출
+    // (이미 파싱 로직이 포함되어 있으므로 재사용하거나, 중복 파싱이 싫다면 아래처럼 작성)
+    Claims claims = jwtParser.parseSignedClaims(token).getPayload();
+    
+    Long userId = Optional.ofNullable(claims.getSubject())
+            .map(Long::valueOf)
+            .orElseThrow(() -> new JwtException("Subject is missing in token"));
+
+    String role = claims.get(ROLE_CLAIM, String.class);
+    List<SimpleGrantedAuthority> authorities = List.of(role).stream()
+            .map(SimpleGrantedAuthority::new)
+            .toList();
+    // 3. UsernamePasswordAuthenticationToken 생성
+    // principal: userId(Long), credentials: null(이미 인증됨), authorities: 권한 리스트
+    return new UsernamePasswordAuthenticationToken(userId, null, authorities);
+}
+
 }

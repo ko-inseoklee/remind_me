@@ -1,5 +1,7 @@
 package com.example.remind_me_server.user.infra.mapper;
 
+import java.util.List;
+
 import com.example.remind_me_server.global.jpa.CustomMapper;
 import com.example.remind_me_server.user.domain.User;
 import com.example.remind_me_server.user.infra.entity.UserJpaEntity;
@@ -26,6 +28,12 @@ public class UserMapper implements CustomMapper<User, UserJpaEntity> {
             .nickname(domain.nickname())
             .role(domain.role())
             .build();
+    }
+
+    @Override
+    public Iterable<User> toDomainList(List<UserJpaEntity> entities) {
+
+        return entities.stream().map(this::toDomain).toList();
     }
     
 }

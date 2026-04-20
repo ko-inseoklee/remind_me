@@ -30,7 +30,6 @@ public class UserJpaEntity extends BaseEntityWithId {
     private String nickname;
     private UserRole role;
 
-
     public void changeNickname(String newNickname) {
         if (newNickname == null || newNickname.isBlank()) throw new IllegalArgumentException();
         this.nickname = newNickname;
