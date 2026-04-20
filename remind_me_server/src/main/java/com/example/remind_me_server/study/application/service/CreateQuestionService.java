@@ -3,7 +3,6 @@ package com.example.remind_me_server.study.application.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.remind_me_server.category.application.port.out.CategoryRepository;
 import com.example.remind_me_server.category.application.service.CategoryManager;
 import com.example.remind_me_server.category.domain.Category;
 import com.example.remind_me_server.study.application.port.in.CreateQuestionCommand;
